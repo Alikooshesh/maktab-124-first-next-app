@@ -1,12 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { Context as TodoContext } from "@/context/todoListContext"
+import { Itodo } from "@/interfaces/todo"
 
-interface Iprops{
-    currentTitle : string
-    updateTodo : Function
-}
+const UpdateTodo = ()=>{
 
-const UpdateTodo = ({currentTitle,updateTodo}:Iprops)=>{
-    const [newTitle , setNewTitle] = useState(currentTitle ?? "")
+    const todoContext = useContext(TodoContext)
+    const {updateTodo,todoList,updateTodoStatus} = todoContext
+
+    const [newTitle , setNewTitle] = useState(todoList.find((item:Itodo) => item.id === updateTodoStatus.id)?.title ?? "")
+
     return(
         <div className="flex items-center gap-4">
             <input className="bg-white text-black" value={newTitle} onChange={(e)=> setNewTitle(e.target.value)}/>

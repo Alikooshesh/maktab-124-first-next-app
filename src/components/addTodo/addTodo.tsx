@@ -1,15 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { Context as TodoContext } from "@/context/todoListContext"
 
-interface Iprops{
-    addTodo : Function
-}
-
-const AddTodo = ({addTodo}:Iprops)=>{
+const AddTodo = ()=>{
     const [title , setTitle] = useState("")
+    const todoContext = useContext(TodoContext)
+    const {addNewTodo} = todoContext
     return(
         <div className="flex items-center gap-4">
             <input className="bg-white text-black" value={title} onChange={(e)=> setTitle(e.target.value)}/>
-            <button className="p-2 border border-green-200" onClick={()=> addTodo(title)}>add</button>
+            <button className="p-2 border border-green-200" onClick={()=> addNewTodo(title)}>add</button>
         </div>
     )
 }
