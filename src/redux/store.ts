@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import counterReducer from './reducers/counterReducer'
+import todoReducer from './reducers/todoReducer'
 import { persistReducer, persistStore } from "redux-persist";
 import storage from 'redux-persist/lib/storage'
 
 const combinedReducers = combineReducers({
-    counter : counterReducer
+    counter : counterReducer,
+    todo : todoReducer
 })
 
 const persistedReducers = persistReducer({
